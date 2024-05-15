@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: unset;
+    align-items: center;
+  }
+  
+  .word {
+    flex-basis: calc(33% - 10px);
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+  
+  
+  .combo-box-select {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .word {
+      flex-basis: calc(50% - 10px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .word {
+      flex-basis: 100%;
+    }
+  }

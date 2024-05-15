@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="container">
+
+      <h1 class="text-center">Preguntas</h1>
+
+      <div *ngFor="let pregunta of preguntas; let i = index">
+        <div for="preguntaSwitch" class="pregunta-label"><strong>{{ i + 1 +'.' }}</strong>
+          <div [innerHtml]="getDescription(pregunta.descripcion)" name="preguntaSwitch"></div>
+        </div>
+        <ng-container id="preguntaSwitch" [ngSwitch]="pregunta.tipo_pregunta">
+          <ng-container *ngSwitchCase="'seleccion-multi-unica'">
+            <app-selecion-multi-unica [pregunta]="pregunta"
+              [groupName]="'group_' + pregunta.pregunta_id"></app-selecion-multi-unica>
+          </ng-container>
+          <ng-container *ngSwitchCase="'seleccion-multi-multi'">
+            <app-selecion-multi-multi [pregunta]="pregunta"
+              [groupName]="'group_' + pregunta.pregunta_id"></app-selecion-multi-multi>
+          </ng-container>
+          <ng-container *ngSwitchCase="'verdadero-falso'">
+            <app-verdadero-falso [pregunta]="pregunta"
+              [groupName]="'group_' + pregunta.pregunta_id"></app-verdadero-falso>
+          </ng-container>
+          <ng-container *ngSwitchCase="'ordenar'">
+            <app-ordenar [pregunta]="pregunta" [groupName]="'group_' + pregunta.pregunta_id"></app-ordenar>
+          </ng-container>
+          <ng-container *ngSwitchCase="'emparejar'">
+            <app-ordenar [pregunta]="pregunta" [groupName]="'group_' + pregunta.pregunta_id"></app-ordenar>
+          </ng-container>
+          <ng-container *ngSwitchCase="'completar'">
+            <app-completar [pregunta]="pregunta" [groupName]="'group_' + pregunta.pregunta_id"></app-completar>
+          </ng-container>
+          <!-- Puedes agregar más casos para otros tipos de preguntas según sea necesario -->
+          <ng-container *ngSwitchDefault>
+            <!-- Este caso maneja el escenario donde el tipo de pregunta no está definido -->
+            <p>Componente no encontrado para esta pregunta</p>
+          </ng-container>
+
+        </ng-container>
+
+      </div>
+      <div class="text-center"> <!-- Agregamos una clase text-center para centrar el botón -->
+        <button class="btn btn-dark" (click)="imprimirRespuestas()">Mostra respuestas</button>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-2"></div>
+</div>

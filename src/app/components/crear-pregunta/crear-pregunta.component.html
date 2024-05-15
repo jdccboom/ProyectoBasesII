@@ -1,0 +1,31 @@
+<div class="container">
+    <h1 class="text-center">Crear Pregunta</h1>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form (submit)="crearPregunta(formPregunta)" #formPregunta="ngForm">
+                <div class="form-group">
+                    <b id="quizd">Description:</b>
+                    <quill-editor name="descriptionInput" id="descriptionInput" [modules]="modulesQuill"
+                        (onEditorChanged)="onChangeEditor($event)" placeholder="Ingrese la descripción"></quill-editor>
+                </div>
+                <div class="footer ">
+                    <button class="btn btn-dark">Guardar</button>
+                    
+                </div>
+                <div class="footer">
+                    <b for="categoria">Category:</b>
+                    <select class="form-control" [(ngModel)]="pregunta.tipo_pregunta" name="categoria" id="categoria">
+                        <option *ngFor="let category of tipoPreguntas" [value]="category">{{ category }}</option>
+                    </select>
+                    <b>Es publica:</b>
+                    <input type="checkbox" [value]="" (ngModel)="pregunta.es_publica" (change)="seleccion()">
+                </div>
+                
+            </form>
+            <br>
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>

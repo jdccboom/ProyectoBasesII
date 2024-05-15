@@ -1,0 +1,10 @@
+<div class="container">
+    <label>
+        <input type="radio" [value]="1" (ngModel)="pregunta.respuestasUsuario" name="respuesta" (change)="seleccion('1')">
+        Verdadero
+    </label>
+    <label>
+        <input type="radio" [value]="0" (ngModel)="pregunta.respuestasUsuario" name="respuesta" (change)="seleccion('0')">
+        Falso
+    </label>
+</div>

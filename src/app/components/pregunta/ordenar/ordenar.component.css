@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10%;
+    width: auto;
+    height: 100%;
+  }
+  
+.opciones-container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  max-width: 90%;
+}
+
+.grupo {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Centrar los elementos verticalmente */
+  margin-bottom: 10px; /* Espacio entre filas */
+}
+
+.opcion {
+  border: 1px solid #ccc;
+  padding: 0px 10px 0px 10px;
+  border-radius: 5px;
+}
+
+.letras {
+  margin-right: 10px; /* Espacio entre letras y opciones */
+  padding: 0px 10px 0px 10px;
+  border-radius: 5px;
+}

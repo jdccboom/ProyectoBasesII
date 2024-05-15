@@ -1,0 +1,28 @@
+<div id= "root">
+    <div class= "form-control" id="container">
+        <h1>Login</h1>
+        <p>Enter your username below to start account </p>
+        <label for=""> Username</label>
+        <div>
+            <input [class]="invalidmail" placeholder="E-Mail" (input)="VerifyMail($event)" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="Login.usuario" #email="ngModel" required>
+            <div class="invalid-feedback">
+                This field is required
+            </div>
+        </div>
+        <label for="">Password</label>
+        <div>
+            <input type="password" [class]="invalidpass" placeholder="ej:123456789" (input)="VerifyPass($event)" aria-label="Password" aria-describedby="addon-wrapping" name="contrasena" [(ngModel)]="Login.contrasena" #contrasena = "ngModel" required>
+            <div class="invalid-feedback">
+                This field is required
+            </div>
+        </div>
+  
+        <div id="container-buttons">
+            <button class="btn btn-dark" (click)="login()">Login</button>
+            <button class="btn btn-dark" ><a routerLink="/signup">Sign Up</a></button>
+        </div>
+        <div id="forgot">
+            <button class="btn btn-link" routerLink="/forgot-password"> forgot my password</button>
+        </div>
+    </div>
+  </div>

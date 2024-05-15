@@ -1,0 +1,50 @@
+<div class="container">
+  <h1 class="text-center">Crear Quiz</h1>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <form (submit)="crearQuiz(formQuiz)" #formQuiz="ngForm">
+
+        <div class="form-group">
+          <b for="titleInput">Quiz Title</b>
+          <input type="text" class="form-control" id="titleInput" rows="5" [(ngModel)]="quiz.titulo" name="titulo">
+        </div>
+
+        <div class="form-group">
+          <b for="categoria">Category:</b>
+          <select class="form-control" [(ngModel)]="quiz.categoria" name="categoria" id="categoria">
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <b id="quizd" >Quiz Description:</b>
+          <quill-editor [(ngModel)]="quiz.descripcion" name="descriptionInput" id="descriptionInput" [modules]="modulesQuill"
+            (onEditorChanged)="onChangeEditor($event)"
+            ></quill-editor>
+        </div>
+
+        <div class="form-group">
+          <b for="maximoPreguntasInput">Numero de Preguntas del Banco:</b>
+          <input type="number" class="form-control" min="1" id="cantidadBancoPreguntasInput" rows="5" [(ngModel)]="quiz.maximoPreguntas" name="maximoPreguntas">
+        </div>
+
+        <div class="form-group">
+          <b for="cantidadPreguntasInput">Numero de Preguntas para  el estudiante:</b>
+          <input type="number" class="form-control" min="1" [max]="quiz.maximoPreguntas" id="cantidadPreguntasInput" rows="5" [(ngModel)]="quiz.numPreguntasEstudiante" name="numPreguntasEstudiante">
+        </div>
+        <div class="form-group">
+          <b for="tiempoInput">Ingrese el tiempo del examen en minutos:</b>
+          <input type="number" class="form-control" id="tiempoInput" rows="5" [(ngModel)]="quiz.tiempoExamen" name="tiempoExamen">
+        </div>
+        <div class="text-center"> <!-- Agregamos una clase text-center para centrar el botón -->
+          <button class="btn btn-dark">Crear</button> <!-- Cambiamos el color a negro con la clase btn-dark -->
+        </div>
+      </form>
+      <br>
+      
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <app-preguntas></app-preguntas>
+</div>

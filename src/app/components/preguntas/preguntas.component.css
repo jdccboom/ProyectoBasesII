@@ -1,0 +1,17 @@
+.container{
+    width: 100%; 
+    border: 1px solid rgba(173, 172, 172, 0.89);
+    border-radius: 12px;
+    padding: 2%;
+    align-items: center;
+    display: block;
+}
+.pregunta-label {
+    display: flex;
+    height: 100%;
+  }
+
+  .pregunta-label > * {
+    margin-left:2%;
+  }
+  

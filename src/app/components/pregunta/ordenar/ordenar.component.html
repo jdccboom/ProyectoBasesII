@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="opciones-container" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="grupo" *ngFor="let opcion of pregunta.opciones; let i = index">
+      <div class="letras" >
+        <div class="letra">{{ getLetter(i)}}</div>
+      </div>
+      <div class="opcion" cdkDrag>{{ opcion.descripcion }}</div>
+    </div>
+  </div>
+</div>
