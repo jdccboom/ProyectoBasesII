@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { PreguntaDTO } from '../../../DTO/pregunta-dto';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-verdadero-falso',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,FormsModule],
   templateUrl: './verdadero-falso.component.html',
   styleUrl: './verdadero-falso.component.css'
 })
@@ -16,9 +17,5 @@ export class VerdaderoFalsoComponent {
 
   @Input() pregunta: PreguntaDTO ;
   @Input() groupName: string="";
-
-  seleccion(opcionSeleccionada: string) {
-    this.pregunta.respuestasUsuario.push(opcionSeleccionada);
-    console.log('Opción seleccionada:', opcionSeleccionada);
-  }
+  
 }

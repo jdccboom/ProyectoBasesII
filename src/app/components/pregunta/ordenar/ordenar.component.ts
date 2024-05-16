@@ -21,6 +21,9 @@ export class OrdenarComponent {
   @Input() pregunta: PreguntaDTO ;
   @Input() groupName: string="";
 
+  ngOnInit(){
+    this.pregunta.opciones=this.shuffle(this.pregunta.opciones);
+  }
   
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.pregunta.opciones, event.previousIndex, event.currentIndex);
@@ -29,7 +32,15 @@ export class OrdenarComponent {
   
   getLetter(index: number): string {
     const letters = ['a', 'b', 'c', 'd','e','f','h','j','i'];
-    return letters[index % letters.length]+"-";
+    return letters[index % letters.length]+".";
+  }
+
+  shuffle<T>(array: T[]): T[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 
 }

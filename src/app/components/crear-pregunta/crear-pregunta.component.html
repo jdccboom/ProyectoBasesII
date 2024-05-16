@@ -1,30 +1,104 @@
 <div class="container">
-    <h1 class="text-center">Crear Pregunta</h1>
+    <h1 class="text-center">Pregunta</h1>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <form (submit)="crearPregunta(formPregunta)" #formPregunta="ngForm">
-                <div class="form-group">
-                    <b id="quizd">Description:</b>
-                    <quill-editor name="descriptionInput" id="descriptionInput" [modules]="modulesQuill"
-                        (onEditorChanged)="onChangeEditor($event)" placeholder="Ingrese la descripción"></quill-editor>
-                </div>
-                <div class="footer ">
-                    <button class="btn btn-dark">Guardar</button>
-                    
-                </div>
-                <div class="footer">
-                    <b for="categoria">Category:</b>
-                    <select class="form-control" [(ngModel)]="pregunta.tipo_pregunta" name="categoria" id="categoria">
-                        <option *ngFor="let category of tipoPreguntas" [value]="category">{{ category }}</option>
-                    </select>
-                    <b>Es publica:</b>
-                    <input type="checkbox" [value]="" (ngModel)="pregunta.es_publica" (change)="seleccion()">
-                </div>
-                
-            </form>
-            <br>
+            <div class="gruop-categoria">
+                <b for="categoria">Category:</b>
+                <select class="form-control" [(ngModel)]="pregunta.tipo_pregunta" name="categoria" id="categoria"
+                    (change)="selecionTipo()">
+                    <option *ngFor="let category of tipoPreguntas" [value]="category">{{ category }}</option>
+                </select>
+                <b for="es_pubica">Es publica:</b>
+                <input type="checkbox" [value]="" id="es_pubica" (ngModel)="pregunta.es_publica" (change)="seleccion()">
+            </div>
+            <div class="form-group">
+                <b id="quizd">Description:</b>
+                <quill-editor name="descriptionInput" id="descriptionInput" [modules]="modulesQuill"
+                    (onEditorChanged)="onChangeEditor($event)" placeholder="Ingrese la descripción"></quill-editor>
+            </div>
+            <div class="form-group">
+                <b>Opciones:</b>
 
+                <div>{{mensaje}}</div>
+                <div class="opciones-container" cdkDropList (cdkDropListDropped)="drop($event)">
+                    <div *ngFor="let opcion of pregunta.opciones; let i = index">
+                        <ng-container id="opcionSwitch" [ngSwitch]="pregunta.tipo_pregunta">
+
+                            <ng-container *ngSwitchCase="'seleccion-multi-unica'">
+                                <div class="opcion">
+                                    <input type="radio" (ngModel)="pregunta.respuestaCorrecta[0]" value="i"
+                                        name="group">
+                                    <b>Option {{i}}:</b>
+                                    <textarea class="description"
+                                        (change)="changeDescripcion(i,descripcion.value)" [name]="'descripcion' + i"
+                                        #descripcion></textarea>
+                                    <button class="btn btn-close" (click)="deleteAnswerOption(i)"></button>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="'seleccion-multi-multi'">
+                                <div class="opcion">
+                                    <input type="checkbox" (change)="seleccionMulti(i)" name="group">
+                                    <b>Option {{i}}:</b>
+                                    <textarea class="description"
+                                        (change)="changeDescripcion(i,descripcion.value)" [name]="'descripcionOpcion'+i"
+                                        #descripcion></textarea>
+                                    <button class="btn btn-close" (click)="deleteAnswerOption(i)"></button>
+
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="'verdadero-falso'">
+                                <div class="opcionVF">
+                                    <input type="radio" (change)="seleccionCorrecta(i)" name="groupVF" #radio>
+                                    {{opcion.descripcion}}
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="'ordenar'">
+                                <div class="opcion" cdkDrag>
+                                    <b>Option {{i}}:</b>
+                                    <textarea class="description"
+                                        (change)="changeDescripcion(i,descripcion.value)" [name]="'descripcion' + i"
+                                        #descripcion></textarea>
+                                    <button class="btn btn-close" (click)="deleteAnswerOption(i)"></button>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="'emparejar'">
+                                <div class="opcion" cdkDrag>
+                                    <b>Option {{i}}:</b>
+                                    <textarea class="description"
+                                        (change)="changeDescripcion(i,descripcion.value)" [name]="'descripcion' + i"
+                                        #descripcion></textarea>
+                                    <button class="btn btn-close" (click)="deleteAnswerOption(i)"></button>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="'completar'">
+                                <div class="form-group">
+                                    <textarea class="descriptionC"
+                                        (change)="changeDescripcion(i,descripcion.value)" [name]="'descripcionOpcion'+i"
+                                        #descripcion></textarea>
+                                    <p></p>
+                                    <b>Vista previa</b>
+                                    <app-completar [pregunta]="pregunta" groupName="group_1"
+                                        [ariaDisabled]="true"></app-completar>
+                                </div>
+                            </ng-container>
+
+                        </ng-container>
+                    </div>
+                    <button class="btn btn-outline-dark" [hidden]="disableAddAnswer"
+                        (click)="addAnswerOption()">AddOption</button>
+                </div>
+            </div>
+            <div class="botones">
+                <button class="btn btn-outline-dark" (click)="crearPregunta()">Guardar</button>
+                <button class="btn btn-dark">Cancelar</button>
+            </div>
+            <br>
         </div>
         <div class="col-2"></div>
     </div>
