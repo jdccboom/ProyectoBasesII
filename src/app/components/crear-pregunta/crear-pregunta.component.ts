@@ -8,11 +8,11 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CompletarComponent } from "../pregunta/completar/completar.component";
 
 @Component({
-    selector: 'app-crear-pregunta',
-    standalone: true,
-    templateUrl: './crear-pregunta.component.html',
-    styleUrl: './crear-pregunta.component.css',
-    imports: [FormsModule, CommonModule, QuillModule, DragDropModule, CompletarComponent]
+  selector: 'app-crear-pregunta',
+  standalone: true,
+  templateUrl: './crear-pregunta.component.html',
+  styleUrl: './crear-pregunta.component.css',
+  imports: [FormsModule, CommonModule, QuillModule, DragDropModule, CompletarComponent]
 })
 export class CrearPreguntaComponent {
 
@@ -27,7 +27,7 @@ export class CrearPreguntaComponent {
   descripcion: any;
   mensaje: string = "";
   disableAddAnswer = true;
-  radioVF:any;
+  radioVF: any;
   modulesQuill = {
     toolbar: [
       ["bold", "italic", "underline", "strike"],
@@ -45,8 +45,9 @@ export class CrearPreguntaComponent {
   }
 
   crearPregunta() {
-    console.log(this.pregunta)
-    console.log(this.radioVF)
+    if (this.pregunta.tipo_pregunta != '' && this.pregunta.descripcion != '' && this.pregunta.opciones.length >= 1) {
+      console.log(this.pregunta)
+    }
   }
 
   seleccion() {
@@ -105,7 +106,7 @@ export class CrearPreguntaComponent {
     console.log(this.pregunta.respuestaCorrecta)
   }
 
-  changeDescripcion(index: number,descripcion:string) {
+  changeDescripcion(index: number, descripcion: string) {
     this.pregunta.opciones[index].descripcion = descripcion;
   }
 

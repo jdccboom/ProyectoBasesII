@@ -11,7 +11,8 @@ export class ObtenerExamenesCursoService {
 
   constructor(private http:HttpClient) { }
 
-  public loginEstudiante(id_curso:string): Observable<MensajeDTO>{
+  public obtener_examenes_curso(id_curso:string): Observable<MensajeDTO>{
     return this.http.get<MensajeDTO>(enviroments.urlApi+'/estudiante/obtener_examenes_curso.php?id_curso='+id_curso); 
   }
+
 }

@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './registrar-profesor.component.css'
 })
 export class RegistrarProfesorComponent {
+registrarProfesor() {
+throw new Error('Method not implemented.');
+}
 
 }

@@ -6,9 +6,9 @@ import { PreguntasComponent } from './components/preguntas/preguntas.component';
 import { CrearPreguntaComponent } from './components/crear-pregunta/crear-pregunta.component';
 
 export const routes: Routes = [
-    { path: '', component: LoginComponent},
-    { path: 'registrarProfesor', component:RegistrarProfesorComponent},
-    { path: 'creaQuiz', component:CrearQuizComponent},
+    { path: '', component: LoginComponent,data: {examen_id:""}},
+    { path: 'registrar-profesor', component:RegistrarProfesorComponent},
+    { path: 'crea-quiz', component:CrearQuizComponent},
     { path: 'preguntas', component:PreguntasComponent},
     { path: 'crear-pregunta', component:CrearPreguntaComponent},
     { path: "**", pathMatch: "full", redirectTo: "" }

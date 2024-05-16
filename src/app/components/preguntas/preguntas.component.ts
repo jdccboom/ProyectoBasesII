@@ -6,7 +6,7 @@ import { SelecionMultiMultiComponent } from '../pregunta/selecion-multi-multi/se
 import { VerdaderoFalsoComponent } from "../pregunta/verdadero-falso/verdadero-falso.component";
 import { OrdenarComponent } from "../pregunta/ordenar/ordenar.component";
 import { DomSanitizer } from '@angular/platform-browser';
-import { PreguntasService } from '../../services/auth/preguntas.service';
+import { PreguntasService } from '../../services/user/preguntas.service';
 import { CompletarComponent } from "../pregunta/completar/completar.component";
 
 @Component({
@@ -51,7 +51,7 @@ export class PreguntasComponent {
     ];
   }
   @Input() preguntas: PreguntaDTO[];
-
+  
   getDescription(descripcion: string) {
     return this.sanitizer.bypassSecurityTrustHtml(descripcion);
   }

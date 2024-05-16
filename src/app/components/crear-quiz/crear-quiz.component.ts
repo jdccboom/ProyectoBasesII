@@ -30,8 +30,8 @@ export class CrearQuizComponent {
      this.quiz= new quizDTO();
   }
 
-  crearQuiz(formQuiz:NgForm) {
-    console.log(formQuiz.value)
+  crearQuiz() {
+    console.log(this.quiz)
   }
 
   onChangeEditor(event:any): void{

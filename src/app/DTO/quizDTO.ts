@@ -5,7 +5,8 @@ export class quizDTO{
         public titulo: string= "Untitle quiz ",
         public maximoPreguntas: number=1,
         public numPreguntasEstudiante: number=1,
-        public tiempoExamen: number=1
+        public tiempoExamen: number=1,
+        public fecha:string =""
     ){
 
     }

@@ -1,10 +1,8 @@
 <div class="container">
-  <h1 class="text-center">Crear Quiz</h1>
+  <h1 class="text-center">Quiz</h1>
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8">
-      <form (submit)="crearQuiz(formQuiz)" #formQuiz="ngForm">
-
         <div class="form-group">
           <b for="titleInput">Quiz Title</b>
           <input type="text" class="form-control" id="titleInput" rows="5" [(ngModel)]="quiz.titulo" name="titulo">
@@ -25,26 +23,30 @@
         </div>
 
         <div class="form-group">
-          <b for="maximoPreguntasInput">Numero de Preguntas del Banco:</b>
+          <b for="maximoPreguntasInput">Numero maximo de preguntas:</b>
           <input type="number" class="form-control" min="1" id="cantidadBancoPreguntasInput" rows="5" [(ngModel)]="quiz.maximoPreguntas" name="maximoPreguntas">
         </div>
 
         <div class="form-group">
-          <b for="cantidadPreguntasInput">Numero de Preguntas para  el estudiante:</b>
+          <b for="cantidadPreguntasInput">Preguntas para  el estudiante:</b>
           <input type="number" class="form-control" min="1" [max]="quiz.maximoPreguntas" id="cantidadPreguntasInput" rows="5" [(ngModel)]="quiz.numPreguntasEstudiante" name="numPreguntasEstudiante">
         </div>
         <div class="form-group">
-          <b for="tiempoInput">Ingrese el tiempo del examen en minutos:</b>
+          <b for="tiempoInput">Tiempo examen (minutos):</b>
           <input type="number" class="form-control" id="tiempoInput" rows="5" [(ngModel)]="quiz.tiempoExamen" name="tiempoExamen">
         </div>
-        <div class="text-center"> <!-- Agregamos una clase text-center para centrar el botón -->
-          <button class="btn btn-dark">Crear</button> <!-- Cambiamos el color a negro con la clase btn-dark -->
+        <div class="form-group">
+          <b for="fechaInput">Fecha presentación:</b>
+          <input type="date" class="form-control" id="fechaInput" [(ngModel)]="quiz.fecha" name="fechaInput">
         </div>
-      </form>
+        <p></p>
+        <div class="botones">
+          <button class="btn btn-outline-dark" (click)="crearQuiz()">Guardar</button>
+          <button class="btn btn-dark">Cancelar</button>
+      </div>
       <br>
       
     </div>
     <div class="col-2"></div>
   </div>
-  <app-preguntas></app-preguntas>
 </div>

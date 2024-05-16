@@ -1,21 +1,26 @@
 <div class="container">
-    <h2>Registrar Profesor</h2>
-    <form action="http://localhost/proyectos/BaseDeDatosII/Controller/profesorController.php" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <br>
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required>
-        <br>
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario" required>
-        <br>
-        <label for="clave">Contraseña:</label>
-        <input type="text" id="clave" name="clave" required>
-        <br>
-        <input type="submit" value="Registrarse">
-    </form>
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h2>Registrar Profesor</h2>
+        <form (submit)="registrarProfesor()" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <br>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+            <br>
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+            <br>
+            <label for="clave">Contraseña:</label>
+            <input type="text" id="clave" name="clave" required>
+            <br>
+            <input type="submit" value="Registrarse">
+        </form>
+
+    </div>
+    <div class="col-2"></div>
 </div>
