@@ -7,7 +7,7 @@
         </div>
         <ng-template #comboBoxTemplate>
             <select 
-                [(ngModel)]="this.pregunta.respuestasUsuario[this.posiciones.indexOf(i)]"
+                [(ngModel)]="this.pregunta.respuestas_usuario[this.posiciones.indexOf(i)]"
                 [name]="'selecion' + word">
                 <option *ngFor="let option of comboBoxWords; let i=index" [value]=option >
                     {{ option }}

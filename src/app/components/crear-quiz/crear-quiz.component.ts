@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { quizDTO } from '../../DTO/quizDTO';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
 import { PreguntasComponent } from "../preguntas/preguntas.component";
 
@@ -11,7 +11,7 @@ import { PreguntasComponent } from "../preguntas/preguntas.component";
     standalone: true,
     templateUrl: './crear-quiz.component.html',
     styleUrl: './crear-quiz.component.css',
-    imports: [FormsModule, CommonModule, QuillModule, PreguntasComponent]
+    imports: [FormsModule, CommonModule, QuillModule, PreguntasComponent,RouterModule]
 })
 export class CrearQuizComponent {
   categories = ['General Knowledge', 'Films', 'Science & Nature', 'Sports', 'Geography', 'History', 'Books', 'Quizzes'];

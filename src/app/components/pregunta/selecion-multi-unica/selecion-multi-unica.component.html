@@ -1,6 +1,6 @@
 <div class="container">
     <div *ngFor="let opcion of pregunta.opciones; let i = index">
-        <input type="radio" [value]="i" (ngModel)="pregunta.respuestasUsuario" (change)="seleccion(opcion.opcion_id)"
+        <input type="radio" [value]="i" (ngModel)="pregunta.respuestas_usuario" (change)="seleccion(opcion.opcion_id)"
             [name]="groupName">
         {{ opcion.descripcion }}
     </div>

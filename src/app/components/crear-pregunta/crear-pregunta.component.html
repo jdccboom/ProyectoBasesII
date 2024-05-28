@@ -27,7 +27,7 @@
 
                             <ng-container *ngSwitchCase="'seleccion-multi-unica'">
                                 <div class="opcion">
-                                    <input type="radio" (ngModel)="pregunta.respuestaCorrecta[0]" value="i"
+                                    <input type="radio" (change)="seleccionCorrecta(i)" value="i"
                                         name="group">
                                     <b>Option {{i}}:</b>
                                     <textarea class="description"
@@ -39,7 +39,7 @@
 
                             <ng-container *ngSwitchCase="'seleccion-multi-multi'">
                                 <div class="opcion">
-                                    <input type="checkbox" (change)="seleccionMulti(i)" name="group">
+                                    <input type="checkbox" (change)="seleccionMulti(opcion.opcion_id)" name="group">
                                     <b>Option {{i}}:</b>
                                     <textarea class="description"
                                         (change)="changeDescripcion(i,descripcion.value)" [name]="'descripcionOpcion'+i"
@@ -58,7 +58,7 @@
 
                             <ng-container *ngSwitchCase="'ordenar'">
                                 <div class="opcion" cdkDrag>
-                                    <b>Option {{i}}:</b>
+                                    <b>Option {{opcion.opcion_id}}:</b>
                                     <textarea class="description"
                                         (change)="changeDescripcion(i,descripcion.value)" [name]="'descripcion' + i"
                                         #descripcion></textarea>
@@ -68,7 +68,7 @@
 
                             <ng-container *ngSwitchCase="'emparejar'">
                                 <div class="opcion" cdkDrag>
-                                    <b>Option {{i}}:</b>
+                                    <b>Option {{opcion.opcion_id}}:</b>
                                     <textarea class="description"
                                         (change)="changeDescripcion(i,descripcion.value)" [name]="'descripcion' + i"
                                         #descripcion></textarea>
@@ -96,7 +96,7 @@
             </div>
             <div class="botones">
                 <button class="btn btn-outline-dark" (click)="crearPregunta()">Guardar</button>
-                <button class="btn btn-dark">Cancelar</button>
+                <button class="btn btn-dark" routerLink="/home">Cancelar</button>
             </div>
             <br>
         </div>

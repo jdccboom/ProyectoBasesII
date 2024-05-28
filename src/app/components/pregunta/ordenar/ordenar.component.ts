@@ -22,12 +22,14 @@ export class OrdenarComponent {
   @Input() groupName: string="";
 
   ngOnInit(){
+    if(this.pregunta.opciones){
     this.pregunta.opciones=this.shuffle(this.pregunta.opciones);
+    }
   }
   
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.pregunta.opciones, event.previousIndex, event.currentIndex);
-    this.pregunta.respuestasUsuario = this.pregunta.opciones.map(opcion => opcion.opcion_id);
+    this.pregunta.respuestas_usuario = this.pregunta.opciones.map(opcion => opcion.opcion_id);
   }
   
   getLetter(index: number): string {

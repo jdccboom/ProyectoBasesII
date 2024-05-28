@@ -1,0 +1,48 @@
+<!-- home.component.html -->
+<!-- app.component.html -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-header">
+        <div class="logo-menu">
+            <a class="navbar-brand">
+                <img src="../../../assets/class.png" alt="Logo" style="height: 40px;">
+                <span class="ml-2">Classroom</span>
+            </a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="home-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Exámenes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Resultados</a>
+                </li>
+                <li id="loginButton" class="nav-item" [hidden]="loggedIn">
+                    <button class="btn btn-outline-light" routerLink="/home/login">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                    </button>
+                </li>
+                <li id="logoutButton" class="nav-item" [hidden]="!loggedIn">
+                    <button class="btn btn-outline-light" (click)="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@if(!loggedIn){
+<div id="loginContainer" class="container mt-5">
+    <app-login [home]="this"></app-login>
+</div>
+}@else{
+<div id="bodyContainer" class="container mt-5">
+    <router-outlet></router-outlet>
+</div>
+}

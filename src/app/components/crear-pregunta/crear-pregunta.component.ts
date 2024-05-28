@@ -6,17 +6,19 @@ import { PreguntaDTO } from '../../DTO/pregunta-dto';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CompletarComponent } from "../pregunta/completar/completar.component";
+import { RouterModule } from '@angular/router';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-crear-pregunta',
   standalone: true,
   templateUrl: './crear-pregunta.component.html',
   styleUrl: './crear-pregunta.component.css',
-  imports: [FormsModule, CommonModule, QuillModule, DragDropModule, CompletarComponent]
+  imports: [FormsModule, CommonModule, QuillModule, DragDropModule, CompletarComponent,RouterModule]
 })
 export class CrearPreguntaComponent {
 
-  constructor() {
+  constructor(private userService:UserService) {
     this.pregunta = new PreguntaDTO();
     this.pregunta.es_publica = 'N'
   }
@@ -45,8 +47,18 @@ export class CrearPreguntaComponent {
   }
 
   crearPregunta() {
+    console.log(this.pregunta)
     if (this.pregunta.tipo_pregunta != '' && this.pregunta.descripcion != '' && this.pregunta.opciones.length >= 1) {
-      console.log(this.pregunta)
+        this.userService.crearPregunta(this.pregunta).subscribe({
+          next: (data:any) => {
+            console.log(data.respuesta)
+          }, 
+          error: (err: any) => {
+            alert(err.error.respuesta);
+            console.log(err.error.respuesta)
+          }
+  
+        });
     }
   }
 
@@ -60,34 +72,34 @@ export class CrearPreguntaComponent {
   }
 
   seleccionCorrecta(index: number) {
-    if (index == 0) {
-      this.pregunta.respuestaCorrecta[0] = 1;
-    } else {
-      this.pregunta.respuestaCorrecta[0] = 0;
-    }
+      this.pregunta.respuesta_correcta[0] = index;
+      console.log(this.pregunta.respuesta_correcta)
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.pregunta.opciones, event.previousIndex, event.currentIndex);
+    this.pregunta.respuesta_correcta = this.pregunta.opciones.map(opcion => opcion.opcion_id);
+
   }
 
   selecionTipo() {
     this.pregunta.opciones = [];
-    this.pregunta.opciones.push({ descripcion: "" });
+    this.addAnswerOption()
     this.disableAddAnswer = false;
     if (this.pregunta.tipo_pregunta == 'verdadero-falso') {
       this.mensaje = "Selecione la repuesta correcta";
       this.pregunta.opciones = [];
       this.disableAddAnswer = true;
-      this.pregunta.opciones.push({ descripcion: "Verdadero" });
-      this.pregunta.opciones.push({ descripcion: "Falso" });
+      this.pregunta.opciones.push({ opcion_id:this.pregunta.opciones.length,descripcion: "Verdadero" });
+      this.pregunta.opciones.push({ opcion_id:this.pregunta.opciones.length,descripcion: "Falso" });
     } else if (this.pregunta.tipo_pregunta == 'ordenar') {
       this.mensaje = "Ingrese las opciones en el orden correcto";
-      this.pregunta.opciones.push({ descripcion: "" });
+      this.pregunta.opciones.push({opcion_id:this.pregunta.opciones.length, descripcion: "" });
     } else if (this.pregunta.tipo_pregunta == 'completar') {
       this.mensaje = "Ingrese la descripcion y recuerda que las palabras que desea que se completen colocarla dentro de doble asterisco (**palabra**)";
       this.disableAddAnswer = true;
     } else if (this.pregunta.tipo_pregunta == 'emparejar') {
+      this.pregunta.opciones.push({opcion_id:this.pregunta.opciones.length, descripcion: "" });
       this.mensaje = "Ingrese las opciones que desea emparejar en el orden correcto";
     } else if (this.pregunta.tipo_pregunta == 'seleccion-multi-unica') {
       this.mensaje = "Ingrese las opciones y recuerde selecionar la correcta";
@@ -97,13 +109,13 @@ export class CrearPreguntaComponent {
   }
 
   seleccionMulti(index: number) {
-    if (this.pregunta.respuestaCorrecta.includes(index)) {
-      this.pregunta.respuestaCorrecta = this.pregunta.respuestaCorrecta.filter(respuesta => respuesta !== index);
+    if (this.pregunta.respuesta_correcta.includes(index)) {
+      this.pregunta.respuesta_correcta = this.pregunta.respuesta_correcta.filter(respuesta => respuesta !== index);
     } else {
-      this.pregunta.respuestaCorrecta.push(index);
+      this.pregunta.respuesta_correcta.push(index);
     }
-    this.pregunta.respuestaCorrecta.sort();
-    console.log(this.pregunta.respuestaCorrecta)
+    this.pregunta.respuesta_correcta.sort();
+    console.log(this.pregunta.respuesta_correcta)
   }
 
   changeDescripcion(index: number, descripcion: string) {
@@ -111,10 +123,26 @@ export class CrearPreguntaComponent {
   }
 
   addAnswerOption() {
-    this.pregunta.opciones.push({ descripcion: '' })
+    this.pregunta.opciones.push({opcion_id:this.pregunta.opciones.length, descripcion: '' })
   }
 
   deleteAnswerOption(index: number) {
     this.pregunta.opciones.splice(index, 1);
+    let i=0;
+    for(let option of this.pregunta.opciones){
+      option.opcion_id = i;
+      i++;
+    }
+    for(let i =0; i < this.pregunta.respuesta_correcta.length; i++){
+      if(this.pregunta.respuesta_correcta[i]==index){
+        this.pregunta.respuesta_correcta.splice(this.pregunta.respuesta_correcta.indexOf(i),1);
+      }
+      if(this.pregunta.respuesta_correcta[i]>index){
+        this.pregunta.respuesta_correcta[i]--;
+      }
+    }
+    console.log(this.pregunta.respuesta_correcta)
+
   }
+
 }

@@ -18,7 +18,7 @@ export class SelecionMultiUnicaComponent {
   @Input() groupName: string="";
 
   seleccion(opcionSeleccionada: any) {
-    this.pregunta.respuestasUsuario.push(opcionSeleccionada);
+    this.pregunta.respuestas_usuario.push(opcionSeleccionada);
     console.log('Opción seleccionada:', opcionSeleccionada);
   }
 }

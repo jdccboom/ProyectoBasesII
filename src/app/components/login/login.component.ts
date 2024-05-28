@@ -1,5 +1,5 @@
 import { HttpClientModule } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { loginDTO } from "../../DTO/loginDTO";
@@ -17,19 +17,12 @@ import { AuthService } from "../../services/auth/auth.service";
 export class LoginComponent {
   invalidmail:string="form-control";
   invalidpass:string="form-control";
+  @Input() home:any;
   Login:loginDTO;
-  constructor(private loginService:AuthService, private routes:Router){
+  constructor(private loginService:AuthService, private routes:Router,private authService:AuthService){
     this.Login = new loginDTO();
   }
   errorMessage:string='';
-  token:string='';
-  VerifyPass(event:any){
-    this.invalidpass = "form-control ";
-  }
-  
-  VerifyMail(event:any){
-    this.invalidmail = "form-control ";
-  }
   login(){
     if(this.Login.usuario == '' ){
       this.invalidmail=this.invalidmail+" is-invalid";
@@ -41,13 +34,11 @@ export class LoginComponent {
       //this.modal.open();
       this.loginService.loginEstudiante(this.Login).subscribe({
         next: (data:any) => {
-          if(!data.error){
+            this.authService.setUserData(data.respuesta);
             console.log(data.respuesta);
-            ///this.routes.navigate(['registrarProfesor']);
-          }else
-          {
-            alert('El error es: '+data.respuesta);
-          }
+            console.log(this.home);
+            this.home.loggedIn=true;
+            this.routes.navigate(['/home/preguntas']);
         }, 
         error: (err: any) => {
           alert('El error es: '+err.respuesta);

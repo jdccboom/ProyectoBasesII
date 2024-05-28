@@ -18,13 +18,13 @@ export class SelecionMultiMultiComponent {
   @Input() groupName: string="";
 
   seleccion(index: number) {
-    if (this.pregunta.respuestasUsuario.includes(index)) {
-      this.pregunta.respuestasUsuario = this.pregunta.respuestasUsuario.filter(respuesta => respuesta !== index);
+    if (this.pregunta.respuestas_usuario.includes(index)) {
+      this.pregunta.respuestas_usuario = this.pregunta.respuestas_usuario.filter(respuesta => respuesta !== index);
     } else {
-      this.pregunta.respuestasUsuario.push(index);
+      this.pregunta.respuestas_usuario.push(index);
     }
-    this.pregunta.respuestasUsuario.sort();
-    console.log(this.pregunta.respuestasUsuario)
+    this.pregunta.respuestas_usuario.sort();
+    console.log(this.pregunta.respuestas_usuario)
   }
 
 }

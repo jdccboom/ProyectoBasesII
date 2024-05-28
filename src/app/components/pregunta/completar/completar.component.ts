@@ -28,11 +28,11 @@ export class CompletarComponent {
 
   ngOnInit(): void {
     this.comboBoxWords = this.getRamdonComboBoxWords();
-    this.pregunta.respuestasUsuario = this.comboBoxWords.map(opcion => opcion = "");
+    this.pregunta.respuestas_usuario = this.comboBoxWords.map(opcion => opcion = "");
     this.getPosiciones();
   }
   get words(): string[] {
-    return this.pregunta.opciones[0].descripcion.split(' ');
+    return this.pregunta.opciones[0].DESCRIPCION.split(' ');
   }
 
   getRamdonComboBoxWords(): string[] {
