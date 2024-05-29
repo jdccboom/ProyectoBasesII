@@ -1,3 +1,5 @@
+import { PreguntaDTO } from "./pregunta-dto";
+
 export class quizDTO{
     constructor(
         public categoria:string= "Films",
@@ -6,7 +8,8 @@ export class quizDTO{
         public maximoPreguntas: number=1,
         public numPreguntasEstudiante: number=1,
         public tiempoExamen: number=1,
-        public fecha:string =""
+        public fecha:string ="",
+        public preguntas: PreguntaDTO[]=[]
     ){
 
     }

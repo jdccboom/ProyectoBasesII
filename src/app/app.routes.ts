@@ -10,7 +10,7 @@ export const routes: Routes = [
     {
         path: 'home', component: HomeComponent, children: [
             { path: 'crear-quiz', component: CrearQuizComponent },
-            { path: 'preguntas', component: PreguntasComponent },
+            { path: 'preguntas/:examen_id', component: PreguntasComponent },
             { path: 'crear-pregunta', component: CrearPreguntaComponent }
         ]
     },

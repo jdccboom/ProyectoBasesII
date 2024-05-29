@@ -9,6 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CompletarComponent } from "../pregunta/completar/completar.component";
 import { HomeComponent } from '../home/home.component';
 import { UserService } from '../../services/user/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-preguntas',
@@ -18,7 +19,12 @@ import { UserService } from '../../services/user/user.service';
   imports: [SelecionMultiUnicaComponent, SelecionMultiMultiComponent, CommonModule, VerdaderoFalsoComponent, OrdenarComponent, CompletarComponent]
 })
 export class PreguntasComponent {
-  constructor(private sanitizer: DomSanitizer, private home:HomeComponent, private userService: UserService) {
+
+  examen_id: any;
+  constructor(private sanitizer: DomSanitizer, private home:HomeComponent, private userService: UserService,private routes: ActivatedRoute) {
+    this.routes.params.subscribe(params=>{
+      this.examen_id = params['examen_id'];
+    });
     // this.preguntas = [
     //   new PreguntaDTO(1, 1, "<strong>Cuanto es 2+2?</strong>", "seleccion-multi-unica",
     //     [{ opcion_id: "1", pregunta_id: "1", descripcion: "2" },
@@ -63,6 +69,7 @@ export class PreguntasComponent {
     for (let pregunta of this.preguntas){
       console.log(pregunta.respuestas_usuario);
     }
+
   }
 
   getPreguntas() {
