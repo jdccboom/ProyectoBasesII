@@ -5,13 +5,12 @@
         <ul class="list-group">
             <li class="list-group-item " *ngFor="let listName of list.slice(1); let i = index;">
                 {{listName.listName}}
-                <button class="btn btn-close" (click)="deleteBusinessList(i)"></button>
+                <button class="btn btn-close" ></button>
             </li>
         </ul>
     </div>
-    <input type="text" class="form-control" id="list-name" placeholder="Name" [(ngModel)]="name" name="name">
+    <input type="text" class="form-control" id="list-name" placeholder="Name" name="name">
     <div class="container-buttons">
-        <button type="button" class="btn btn-dark" id="new-button" (click)="createBusinessList()">New</button>
         <button type="button" class="btn btn-dark" (click)="close()">Exit</button>
     </div>
 </div>

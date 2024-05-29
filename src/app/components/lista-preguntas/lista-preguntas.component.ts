@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-lista-preguntas',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './lista-preguntas.component.html',
   styleUrl: './lista-preguntas.component.css'
 })
