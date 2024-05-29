@@ -1,4 +1,4 @@
-<table class="table">
+@if(mostrarTabla){<table class="table">
     <thead>
       <tr>
         <th>Date</th>
@@ -18,9 +18,12 @@
         <td>{{ data.apellido }}</td>
         <td>{{ data.puntaje_porcentaje }}</td>
         <td>{{ data.puntaje }}</td>
-        <td><a href="#">View</a></td>
+        <td><a (click)="selecionarEstudiante(data.id)">View</a></td>
         <td>{{ data.tiempo }}</td>
         <td>{{ data.ipDireccion }}</td>
       </tr>
     </tbody>
   </table>
+}@else {
+  <app-preguntas-examen></app-preguntas-examen>
+}

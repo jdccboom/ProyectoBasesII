@@ -6,13 +6,12 @@ import { PreguntasComponent } from './components/preguntas/preguntas.component';
 import { CrearPreguntaComponent } from './components/crear-pregunta/crear-pregunta.component';
 import { HomeComponent } from './components/home/home.component';
 import { ExamenesPresentadoComponent } from './components/examenes-presentado/examenes-presentado.component';
+import { PreguntasExamenComponent } from './components/preguntas-examen/preguntas-examen.component';
 
 export const routes: Routes = [
     {
         path: 'home', component: HomeComponent, children: [
-            { path: 'examen/:id', component: ExamenesPresentadoComponent ,children: [
-                { path: 'preguntas/:id', component: PreguntasComponent },
-            ] },
+            { path: 'examen/:examen_id', component: ExamenesPresentadoComponent },
             { path: 'crear-quiz', component: CrearQuizComponent },
             { path: 'preguntas/:examen_id', component: PreguntasComponent },
             { path: 'crear-pregunta', component: CrearPreguntaComponent }

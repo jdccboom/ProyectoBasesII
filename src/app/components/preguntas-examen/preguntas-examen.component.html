@@ -1,1 +1,21 @@
-<p>preguntas-examen works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th >S.No</th>
+        <th >Descripcion</th>
+        <th >% Correctas</th>
+        <th >Correctas</th>
+        <th >Incorrectas</th>
+        <th >Respondidas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of estadisticas">
+        <td>{{ data.posicion }}</td>
+        <td>{{ data.descripcion }}</td>
+        <td>{{ data.porcentaje_correctas }}</td>
+        <td>{{ data.num_respuestas_correctas }}</td>
+        <td>{{ data.num_respuestas_erroneas }}</td>
+      </tr>
+    </tbody>
+  </table>
