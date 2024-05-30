@@ -2,9 +2,10 @@
   <div class="col-2"></div>
   <div class="col-8">
     <div class="container">
+      
 
       <h1 class="text-center">Preguntas</h1>
-
+      <div class="fixed-timer">Tiempo transcurrido: {{ tiempoTrancurrido }}</div>
       <div *ngFor="let pregunta of preguntas; let i = index">
         <div for="preguntaSwitch" class="pregunta-label"><strong>{{ i + 1 +'.' }}</strong>
           <div [innerHtml]="getDescription(pregunta.descripcion)" name="preguntaSwitch"></div>

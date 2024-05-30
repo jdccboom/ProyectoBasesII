@@ -2,8 +2,9 @@
     width: 100%; 
     border: 1px solid rgba(173, 172, 172, 0.89);
     border-radius: 12px;
-    padding: 1.5%;
     display: block;
+    overflow-y: auto; /* Add scrollbar when list items exceed container height */
+    height: 500px;
 }
 
 #descriptionInput{
@@ -59,4 +60,11 @@
 
 .descriptionC{
     width: 100%;
+}
+
+.icon{
+    width: 16px;
+    height: 16px;    
+    align-self: center;
+    cursor: move;
 }

@@ -13,8 +13,7 @@ export const routes: Routes = [
         path: 'home', component: HomeComponent, children: [
             { path: 'examen/:examen_id', component: ExamenesPresentadoComponent },
             { path: 'crear-quiz', component: CrearQuizComponent },
-            { path: 'preguntas/:examen_id', component: PreguntasComponent },
-            { path: 'crear-pregunta', component: CrearPreguntaComponent }
+            { path: 'preguntas/:examen_id', component: PreguntasComponent }
         ]
     },
     { path: "**", pathMatch: "full", redirectTo: "home" }

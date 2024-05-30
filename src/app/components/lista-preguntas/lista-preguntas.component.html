@@ -1,13 +1,18 @@
-<div class="container">
+<div class="container-lista">
     <h1 class="title">Lista preguntas</h1>
-    <div>List</div>
+    <div></div>
     <div class="list-container">
+        @if (alertaView()) {
+        <app-alerta [alerta]="alerta"></app-alerta>
+        }
         <ul class="list-group">
-            <li class="list-group-item " *ngFor="let pregunta of preguntas; let i = index;">
-                <button class="btn btn-close" ></button>
+            <li class="list-group-item " *ngFor="let pregunta of preguntas; let i = index;" (click)="selecion(pregunta)">
+                Tipo: {{pregunta.tipo_pregunta}}
+                <div [innerHtml]="getDescription(pregunta.descripcion)"></div>
             </li>
         </ul>
     </div>
+    
     <div class="container-buttons">
         <button type="button" class="btn btn-dark" (click)="close()">Exit</button>
     </div>

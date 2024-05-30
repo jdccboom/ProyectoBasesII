@@ -4,14 +4,16 @@ import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { loginDTO } from "../../DTO/loginDTO";
 import { AuthService } from "../../services/auth/auth.service";
+import { AlertaComponent } from "../alerta/alerta.component";
+import { Alerta } from "../../DTO/Alerta";
 
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [FormsModule, RouterModule, HttpClientModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    standalone: true,
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css',
+    imports: [FormsModule, RouterModule, HttpClientModule, AlertaComponent]
 })
 
 export class LoginComponent {
@@ -19,6 +21,7 @@ export class LoginComponent {
   invalidpass:string="form-control";
   @Input() home:any;
   Login:loginDTO;
+  alerta!: Alerta|null;
   constructor(private loginService:AuthService, private routes:Router,private authService:AuthService){
     this.Login = new loginDTO();
   }
@@ -35,13 +38,13 @@ export class LoginComponent {
       this.loginService.loginEstudiante(this.Login).subscribe({
         next: (data:any) => {
             this.authService.setUserData(data.respuesta);
-            console.log(data.respuesta);
-            console.log(this.home);
+            this.alerta= new Alerta(data.respuesta,'success');
+
             this.home.loggedIn=true;
             this.routes.navigate(['/home/preguntas']);
         }, 
         error: (err: any) => {
-          alert('El error es: '+err.respuesta);
+          this.alerta= new Alerta(err.error.respuesta,'danger');;
         }
 
       });  

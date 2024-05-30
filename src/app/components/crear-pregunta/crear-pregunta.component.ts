@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { PreguntaDTO } from '../../DTO/pregunta-dto';
@@ -8,6 +8,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CompletarComponent } from "../pregunta/completar/completar.component";
 import { RouterModule } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { PopupService } from '../../services/extService/popup.service';
 
 @Component({
   selector: 'app-crear-pregunta',
@@ -18,7 +20,8 @@ import { UserService } from '../../services/user/user.service';
 })
 export class CrearPreguntaComponent {
 
-  constructor(private userService:UserService) {
+  constructor(private userService:UserService,private dialog: MatDialogRef<CrearPreguntaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any, private popup:PopupService) {
     this.pregunta = new PreguntaDTO();
     this.pregunta.es_publica = 'N'
   }
@@ -51,10 +54,14 @@ export class CrearPreguntaComponent {
     if (this.pregunta.tipo_pregunta != '' && this.pregunta.descripcion != '' && this.pregunta.opciones.length >= 1) {
         this.userService.crearPregunta(this.pregunta).subscribe({
           next: (data:any) => {
-            console.log(data.respuesta)
+            this.pregunta.pregunta_id=data.respuesta;
+            this.popup.openSnackBar("Pregunta creada con éxito")
+            console.log(this.pregunta)
+            this.data.component.preguntas.push(this.pregunta);
+            this.close()
           }, 
           error: (err: any) => {
-            alert(err.error.respuesta);
+            this.popup.openSnackBar(err.error.respuesta);
             console.log(err.error.respuesta)
           }
   
@@ -144,5 +151,8 @@ export class CrearPreguntaComponent {
     console.log(this.pregunta.respuesta_correcta)
 
   }
-
+  
+  close() {
+    this.dialog.close();
+  }
 }

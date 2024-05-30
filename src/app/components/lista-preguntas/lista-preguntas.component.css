@@ -1,5 +1,5 @@
-.container{
-    width: 359px;
+.container-lista{
+    width: 100%;
     height: 472px;
     border: 1px solid #C0C0C0;
     border-radius: 12px;
@@ -12,6 +12,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 2%;
+    
 }
 .container-buttons button{
     margin: 0 5% 0 5%;
@@ -29,22 +31,22 @@
 }
 
 .list-container {
-    height: 197px; /* Set a fixed height for the container */
-    overflow-y: auto; /* Add scrollbar when list items exceed container height */
+    height: 310px;
 }
 
 
 
 .list-group {
-    padding: 0;
+    height: 228px;
     margin-bottom: 20px;
     list-style: none;
+    overflow-y: auto; /* Add scrollbar when list items exceed container height */
 }
 
 .list-group-item {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    display: flex;
+    display: grid;
     justify-content: space-between;
 }
 

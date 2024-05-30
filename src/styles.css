@@ -6,6 +6,11 @@
     height: 150px;
 }
 
+.mdc-dialog__surface{
+    border-radius: 12px !important;
+    width: 100% !important;
+}
+
 html, body {
     height: 100%;
     margin: 0;

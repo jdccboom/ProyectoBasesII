@@ -16,6 +16,10 @@ export class UserService {
     return this.http.get<MensajeDTO>(enviroments.urlApi+'/user/obtener_preguntas.php'); 
   }
 
+  public getPreguntasProfesor(profesor_id:string): Observable<MensajeDTO>{
+    return this.http.get<MensajeDTO>(enviroments.urlApi+'/user/obtener_preguntas_profesor.php?profesor_id='+profesor_id); 
+  }
+
   public obtener_examenes_curso(id_curso:string): Observable<MensajeDTO>{
     return this.http.get<MensajeDTO>(enviroments.urlApi+'/estudiante/obtener_examenes_curso.php?id_curso='+id_curso); 
   }

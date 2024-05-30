@@ -13,4 +13,23 @@
 .botones{
     display: flex;
     justify-content: space-evenly;  
+    margin: 2%;
+}
+
+.icon{
+    width: 16px;
+    height: 16px;    
+    align-self: center;
+    cursor: pointer;
+}
+
+.container-icon{
+    cursor: pointer;
+}
+
+.form-group-preguntas{
+    display: grid;
+    align-items: center;
+    width: 100%;
+    grid-template-columns: 15fr 0fr;
 }
