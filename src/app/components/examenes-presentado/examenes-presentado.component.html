@@ -1,12 +1,13 @@
-@if(mostrarTabla){<table class="table">
+@if(mostrarTabla){
+  <app-alerta [alerta]="alerta"></app-alerta>
+  <table class="table">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Score (%)</th>
-        <th>Score</th>
-        <th>Score Report</th>
+        <th>Fecha</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Nota</th>
+        <th>Reporte</th>
         <th>Time Taken</th>
         <th>IP Address</th>
       </tr>
@@ -14,16 +15,18 @@
     <tbody>
       <tr *ngFor="let data of estadisticas">
         <td>{{ data.fecha }}</td>
-        <td>{{ data.nombre }}</td>
-        <td>{{ data.apellido }}</td>
-        <td>{{ data.puntaje_porcentaje }}</td>
-        <td>{{ data.puntaje }}</td>
-        <td><a (click)="selecionarEstudiante(data.id)">View</a></td>
+        <td>{{ data.nom_estudiante }}</td>
+        <td>{{ data.ap_estudiante }}</td>
+        <td>{{ data.nota }}</td>
+        <td><a (click)="selecionarEstudiante(data.examen_id)">View</a></td>
         <td>{{ data.tiempo }}</td>
-        <td>{{ data.ipDireccion }}</td>
+        <td>{{ data.ip_estudiante }}</td>
       </tr>
     </tbody>
   </table>
+  
+  <button class="btn btn-dark" (click)="verEstadisticas()">Ver estadisticas por pregunta</button>
 }@else {
-  <app-preguntas-examen></app-preguntas-examen>
+  <app-preguntas-examen [estudiante_id]="estudiante_id" [examen_id]="examen_id"></app-preguntas-examen>
+  <button class="btn btn-dark" (click)="cerrarEstadisticas()">Ver examen</button>
 }

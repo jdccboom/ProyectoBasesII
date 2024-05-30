@@ -54,9 +54,11 @@ export class CrearPreguntaComponent {
     if (this.pregunta.tipo_pregunta != '' && this.pregunta.descripcion != '' && this.pregunta.opciones.length >= 1) {
         this.userService.crearPregunta(this.pregunta).subscribe({
           next: (data:any) => {
-            this.pregunta.pregunta_id=data.respuesta;
+            this.pregunta.pregunta_id=data.pregunta_id;
             this.popup.openSnackBar("Pregunta creada con éxito")
             console.log(this.pregunta)
+            this.pregunta.posicion=this.data.component.preguntas.length;
+            this.pregunta.porcentaje=1;
             this.data.component.preguntas.push(this.pregunta);
             this.close()
           }, 

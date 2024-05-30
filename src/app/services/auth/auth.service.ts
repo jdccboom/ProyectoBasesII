@@ -23,7 +23,8 @@ export class AuthService {
     window.location.reload();
   }
 
-  setUserData(userData: any) {
+  setUserData(userData: any,rol:string) {
+    userData.rol=rol;
     localStorage.setItem('userData', JSON.stringify(userData));
   }
 

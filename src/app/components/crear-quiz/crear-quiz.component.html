@@ -44,6 +44,9 @@
       <h1 class="text-center">Preguntas</h1>
       <div *ngFor="let pregunta of quiz.preguntas; let i = index" class="form-group-preguntas">
         <label for="pregunta-{{ i }}">Pregunta {{i+1}}   tipo: {{pregunta.tipo_pregunta}}
+          <p>Porcentaje:</p>
+          <input type="number" class="form-control" min="0" max="99" id="cantidadBancoPreguntasInput" rows="2" [(ngModel)]="quiz.preguntas[i].porcentaje"  [name]="'porcentaje'+i">
+          <p>Descripcion:</p>
           <div [innerHtml]="getDescription(pregunta.descripcion)"></div> 
         </label><button class="btn btn-close" (click)="deletePregunta(i)"></button>
       </div>

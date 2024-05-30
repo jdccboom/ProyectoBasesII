@@ -11,8 +11,8 @@ import { PreguntasExamenComponent } from './components/preguntas-examen/pregunta
 export const routes: Routes = [
     {
         path: 'home', component: HomeComponent, children: [
-            { path: 'examen/:examen_id', component: ExamenesPresentadoComponent },
-            { path: 'crear-quiz', component: CrearQuizComponent },
+            { path: 'examen-presentado/:examen_id', component: ExamenesPresentadoComponent },
+            { path: 'crear-quiz/:materia_id', component: CrearQuizComponent },
             { path: 'preguntas/:examen_id', component: PreguntasComponent }
         ]
     },

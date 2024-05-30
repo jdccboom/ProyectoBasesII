@@ -1,3 +1,4 @@
+<app-alerta [alerta]="alerta"></app-alerta>
 <table class="table">
     <thead>
       <tr>
@@ -11,11 +12,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of estadisticas">
-        <td>{{ data.posicion }}</td>
-        <td>{{ data.descripcion }}</td>
+        <td>{{ data.posicion_pregunta }}</td>
+        <td [innerHTML]="getDescription(data.descripcion_pregunta)"></td>
         <td>{{ data.porcentaje_correctas }}</td>
-        <td>{{ data.num_respuestas_correctas }}</td>
-        <td>{{ data.num_respuestas_erroneas }}</td>
+        <td>{{ data.numero_correctas }}</td>
+        <td>{{ data.numero_incorrectas }}</td>
+        <td>{{ data.cantidad_respondidas }}</td>
       </tr>
     </tbody>
   </table>

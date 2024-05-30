@@ -1,6 +1,6 @@
 export class loginDTO{
     constructor(
-        public usuario:string ='',
-        public contrasena:string=''
+        public email:string ='',
+        public contrasenia:string=''
     ){}
 }

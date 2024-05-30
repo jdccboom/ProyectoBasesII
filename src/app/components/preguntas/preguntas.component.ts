@@ -25,7 +25,7 @@ export class PreguntasComponent implements OnInit, OnDestroy{
   tiempoTrancurrido: string = '00:00:00';
   private timer: any;
   private startTime!: Date;
-  private maxTime: number = 5; // Maximum time in seconds (e.g., 1 hour)
+  private maxTime: number = 1; // Maximum time in seconds (e.g., 1 hour)
   private timeElapsed: number = 0; // Time elapsed in seconds
 
   constructor(private sanitizer: DomSanitizer, private home:HomeComponent, private userService: UserService,private routesA: ActivatedRoute,
@@ -97,7 +97,7 @@ export class PreguntasComponent implements OnInit, OnDestroy{
   }
 
   getPreguntas() {
-    this.userService.getPreguntas().subscribe({
+    this.userService.getPreguntasProfesor("1").subscribe({
       next: (data: any) => {
         if (!data.error) {
           console.log(data.respuesta);

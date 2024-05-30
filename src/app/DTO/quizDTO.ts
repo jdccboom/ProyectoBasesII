@@ -9,7 +9,9 @@ export class quizDTO{
         public numPreguntasEstudiante: number=1,
         public tiempoExamen: number=1,
         public fecha:string ="",
-        public preguntas: PreguntaDTO[]=[]
+        public preguntas: PreguntaDTO[]=[],
+        public materia_id: number=1,
+        public profesor_id: number=1
     ){
 
     }

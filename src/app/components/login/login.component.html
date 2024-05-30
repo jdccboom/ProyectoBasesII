@@ -2,17 +2,10 @@
     <div class="card-body">
         <h2 class="card-title">Iniciar sesión</h2>
         <div class="form-group">
-            <label for="tipo_cuenta">Tipo de cuenta:</label>
-            <select id="tipo_cuenta" class="custom-select" name="tipo_cuenta" required>
-                <option value="profesor">Profesor</option>
-                <option value="estudiante">Estudiante</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label for=""> Usuario:</label>
         <div>
-            <input [class]="invalidmail" placeholder="username" aria-label="Username"
-                aria-describedby="addon-wrapping" [(ngModel)]="Login.usuario" #email="ngModel" required>
+            <input [class]="invalidmail" placeholder="email" aria-label="Username"
+                aria-describedby="addon-wrapping" [(ngModel)]="Login.email" #email="ngModel" required>
             <div class="invalid-feedback">
                 Este campo es nesesario.
             </div>
@@ -22,7 +15,7 @@
             <label for="contrasena">Contraseña:</label>
             <div>
                 <input type="password" id="contrasena" [class]="invalidpass" placeholder="password"
-                    aria-label="Password" aria-describedby="addon-wrapping" name="contrasena" [(ngModel)]="Login.contrasena"
+                    aria-label="Password" aria-describedby="addon-wrapping" name="contrasena" [(ngModel)]="Login.contrasenia"
                     #contrasena="ngModel" required>
                 <div class="invalid-feedback">
                     Este campo es nesesario.

@@ -31,6 +31,8 @@ export class ListaPreguntasComponent {
   selecion(pregunta:PreguntaDTO){
     console.log(this.component.preguntas);
     if (!this.component.preguntas.some((p: { pregunta_id: any; }) => p.pregunta_id === pregunta.pregunta_id)) {
+      pregunta.posicion=this.component.preguntas.length;
+      pregunta.porcentaje=1;
       this.component.preguntas.push(pregunta);
       this.close();
     } else {

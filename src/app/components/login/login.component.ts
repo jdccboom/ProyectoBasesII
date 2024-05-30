@@ -27,26 +27,34 @@ export class LoginComponent {
   }
   errorMessage:string='';
   login(){
-    if(this.Login.usuario == '' ){
+    if(this.Login.email == '' ){
       this.invalidmail=this.invalidmail+" is-invalid";
     }
-    if(this.Login.contrasena == ''){
+    if(this.Login.contrasenia == ''){
       this.invalidpass=this.invalidpass+" is-invalid";
     }
-    if(this.Login.contrasena != '' && this.Login.usuario != '' ){
+    if(this.Login.contrasenia != '' && this.Login.email != '' ){
       //this.modal.open();
       this.loginService.loginEstudiante(this.Login).subscribe({
         next: (data:any) => {
-            this.authService.setUserData(data.respuesta);
+            this.authService.setUserData(data.respuesta,"ESTUDIANTE");
             this.alerta= new Alerta(data.respuesta,'success');
 
             this.home.loggedIn=true;
             this.routes.navigate(['/home/preguntas']);
         }, 
         error: (err: any) => {
-          this.alerta= new Alerta(err.error.respuesta,'danger');;
+          this.loginService.loginProfesor(this.Login).subscribe({
+            next: (data:any) => {
+                this.authService.setUserData(data.respuesta,"PROFESOR");
+                this.alerta= new Alerta(data.respuesta,'success');
+                this.home.loggedIn=true;
+                this.routes.navigate(['/home/preguntas']);
+            }, 
+            error: (err: any) => {
+                this.alerta= new Alerta(err.error.respuesta,'danger');
+            }});
         }
-
       });  
     }
     
